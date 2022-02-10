@@ -107,3 +107,6 @@ while True:
 ```
 ----------------------------
 ## Auto Scaling Group (ASG) and load balancing
+![My project_auto-scaling_load-balancing](https://user-images.githubusercontent.com/98215575/153360414-ef8574bc-c678-4446-9f3d-d365cc0c7e87.png)
+
+
