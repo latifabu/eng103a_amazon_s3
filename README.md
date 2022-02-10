@@ -109,4 +109,69 @@ while True:
 ## Auto Scaling Group (ASG) and load balancing
 ![My project_auto-scaling_load-balancing](https://user-images.githubusercontent.com/98215575/153360414-ef8574bc-c678-4446-9f3d-d365cc0c7e87.png)
 
+Auto scaling automatically adjusts the amount of computational resources based on server load.
+Load balacning distributes traffic between EC2 instances so that no one instances gets overwhelmed.
+Application Load Balancer (ALB) balances the load coming from users.
 
+Benefits: 
+- High availability & Scalability as they are deployed in multi availability zones (AZs).
+- Can scale out by spinning up more servers to increase CPU supply.
+- Scaling up and down based on server load is cost effective.
+
+### Creating a Launch template
+
+- Ensure you have an up to date and working AMI. 
+- Navigate to the `instances` tab on the left and select launch template.
+- `Create launch template`
+- Add appropriate names and descriptions.
+- Under `Application and OS Images ` select the AMI you have just created or create a new ubuntu machine v18.04.
+- Create security group rules
+- First rule, Type: `HTTP`, Source type: `Anywhere`
+- Second rule, Type: `ssh`, Source type: `My IP`
+- `Instance type` - t2 micro
+- `Key pair` - select your exisiting pair
+- `Network settings` select or create a security group with the correct VPC.
+- Configure storage can be left unchanged unless additional storage is needed.
+- `Resource tags` enter key and value fields appropriately. e.g. `key` : Name Value: `eng103a-name` 
+- In the `resource type` drop down menu select `Instances, Volumes and Network Interfaces`
+- Select `advance details`.
+- Select `Enable resource-based IPV4 DNS requests`
+- Under `user data` enter (Automates process, commands do not need to be done manually):
+  
+  ```
+  #!/bin/bash
+  sudo apt update -y && sudo apt upgrade -y
+  sudo su ubuntu
+  source /home/ubuntu/.bashrc
+  cd /home/ubuntu/app && screen -d -m npm start
+  ```
+
+### Creating an Auto Scaling Group (ASG)
+- On the left of your screen scroll to the bottom.
+- Select `Auto Scaling Groups`
+- Create a name for the auto scaling group
+- For the subnet select the correct VPC and select the availability zones you want to use. `eu-west-1a (default)`, `eu-west-1b (default)`, `eu-west-1c (default)`
+- Under `load balancer` select the one already created.
+- If one has not been made. Select the appropriate load balancer type (Application Load Balancer HTTP, HTTPS) 
+- Select the appropriate name and enter the correct scheme
+- Select Internet-facing, 
+- Enter target group name
+- Select `ELB`
+- Health check grace period at 300 seconds (lower time is more costly)
+- Configure group size and scaling policies:
+- 
+  `Desired capacity : 2, Minimum capacity : 2, Maximum capacity : 3`
+
+```
+Desired capacity - Desired number of instances
+Minimum capacity - Minimum number of instances 
+Maximum capacity - Max number of instances.
+```
+- Scaling policies:
+- Select Target tracking scaling policy
+- Select metric type and desired target value
+
+Create your ASG, you will then be able to see your instances on your dashboard.
+
+Blockers:
+Incoorect AMI was used, wrong VPC was selected and user data was inputed incorrectly. These issues prevented our ASG instances from launching as intended.
