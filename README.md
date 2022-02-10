@@ -40,6 +40,7 @@ How to connect:
 - 1) In the terminal `pip3 install boto3`
 - 2) Create a python file  `nano <file_name>.py`
 
+`https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-creating-buckets.html`
 
 ```
 #!/usr/bin/env python3
