@@ -105,4 +105,5 @@ while True:
         print(\n"Please enter from the following options please")
 
 ```
+----------------------------
 ## Auto Scaling Group (ASG) and load balancing
