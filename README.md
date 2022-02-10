@@ -174,4 +174,4 @@ Maximum capacity - Max number of instances.
 Create your ASG, you will then be able to see your instances on your dashboard.
 
 Blockers:
-Incoorect AMI was used, wrong VPC was selected and user data was inputed incorrectly. These issues prevented our ASG instances from launching as intended.
+Incorrect AMI was used, wrong VPC was selected and user data was inputed incorrectly. These issues prevented our ASG instances from launching as intended.
