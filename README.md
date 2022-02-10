@@ -24,15 +24,15 @@ How to connect:
 - If details have been entered correctly all files will be listed in our specific s3 bucket.
 
 ### CRUD and buckets 
-   Commands used:
+Commands used:
     
-    -  Create a bucket `aws s3 mb s3://<bucket-name>`(Naming convention in awscli uses "-" rather than "_" for spaces  )
+-  Create a bucket `aws s3 mb s3://<bucket-name>`(Naming convention in awscli uses "-" rather than "_" for spaces  )
     
-    -  Remove bucket with `aws s3 mb s3://eng103a-latif-devops` (buckets need to be empty to be removed)
+-  Remove bucket with `aws s3 mb s3://eng103a-latif-devops` (buckets need to be empty to be removed)
 
-    - Use to remove files from a bucket - `aws s3 rm s3://<bucket-name>/[file-name]`
+- Use to remove files from a bucket - `aws s3 rm s3://<bucket-name>/[file-name]`
 
-    - Another command NOT RECOMMENDED if bucket content has multiple files aws s3 `rm s3://<bucket-name> --recursive` removes all files from bucket.
+- Another command NOT RECOMMENDED if bucket content has multiple files aws s3 `rm s3://<bucket-name> --recursive` removes all files from bucket.
 
 
 ### CRUD using python script
@@ -105,4 +105,4 @@ while True:
         print(\n"Please enter from the following options please")
 
 ```
-##
+## Auto Scaling Group (ASG) and load balancing
